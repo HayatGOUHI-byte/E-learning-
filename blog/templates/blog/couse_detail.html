@@ -1,0 +1,149 @@
+{% extends "blog/base_2.html" %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'blog/course_detail.css' %}"> {% endblock %}
+{% block content %}
+    <section class="course_detail" style="background-image: url({{ course.image.url }});">
+        <div class="overlay"></div>
+        <div class="txt">
+            <div class="heading">
+                <h1> {{ course.title }}</h1>
+                <p class="description">
+                    {{ course.description }}
+                </p>
+                <div>
+                    <img class="img-fluid rounded-circle" src="{{ course.instructor.user.profile.image.url }}"
+                         alt="...">
+                    <p style="font-size: 1.3rem;">
+                        {{ course.instructor.user.first_name }} {{ course.instructor.user.last_name }}
+                    </p>
+                </div>
+
+                <h6>
+                    {{ course.level }}
+                </h6>
+                <p class="text-secondary">
+                    {{ course.creationDate }}
+                </p>
+
+            </div>
+        </div>
+
+        <div style="z-index: 10" class="custom-shape-divider-bottom-1613919420">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                 preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                      class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="you_will_learn container">
+
+        <div class="title">
+            <h3> WHAT YOU WILL LEARN </h3>
+        </div>
+        <div class="body">
+            <p>
+                {{ course.you_will_learn }}
+
+            </p>
+        </div>
+
+
+    </section>
+
+    <section class="sections container-fluid">
+        <div>
+            <h2> Sections of this Course </h2>
+        </div>
+
+
+        {% for section in sections %}
+            {% if enroll or request.user == course.instructor.user %}
+                <h4><a href="{{ section.get_absolute_url }}">  {{ section.title }}</a>
+                    {% if request.user == course.instructor.user %}
+                    <a style="margin-left: 20px;" href="{% url 'section-update' section.id%}"><img style=" height: 25px;width: 25px;" alt="icon" src="{% static 'blog/images/edit.png' %}"/> </a>
+                    {% endif %}
+
+
+
+                </h4>
+
+            {% else %}
+                <h4> {{ section.title }} </h4>
+
+            {% endif %}
+        {% endfor %}
+        {% if request.user == course.instructor.user %}
+        <h4> <a style="font-size: medium;color: #428bca; text-decoration: none;" href="{% url 'section-create' course.id%}" > <img alt="add" style=" height: 25px;width: 25px;" src="{% static 'blog/images/add.png' %}" />
+            add a section ..
+             </a>
+        </h4>
+        {% endif %}
+    </section>
+    {% if enroll %}
+
+        <div class="purchase-button">
+            <h4 class=" btn4"> You Already enrolled this course </h4>
+        </div>
+
+
+    {% else %}
+
+        <div class="purchase-button">
+            <a class="btn btn4" href="{% url 'checkout' course.id %}"><h4> Buy This Course Now</h4></a>
+        </div>
+    {% endif %}
+
+
+    <section style="color: #00022e" class="comments container-fluid mt-5">
+        <div><h2 style="margin-left: 4.5%;"> Comments </h2></div>
+        <div class="container pt-3" style="border: 1px solid lightgray">
+            {% for comment in comments %}
+            <div class="comment pb-3">
+                <div class="commenter-info" style="display: flex;flex-direction:row;" >
+                    <img class="rounded-circle" src="{{ comment.user.profile.image.url }}" alt="comment">
+                    <p style="font-size: 1.3rem;">
+                        {{ comment.user.first_name }} {{ comment.user.last_name }}
+
+                    </p>
+                    <p
+                       class="text-secondary comment-date"> -
+                    {{ comment.date }}
+                    </p>
+                </div>
+
+                <p style="margin-left: 3%; margin-bottom: 5px;">  {{ comment.comment }}.
+                </p>
+                {% if request.user == course.instructor.user %}
+                <a  class="btn-reply reply"  >↪ reply to this comment</a>
+                    <form class="replyForm">
+                        <input type="text" style="margin-left: 5%; padding: 10px; border-radius: 10px;border: 1px solid lightslategrey; width: 60vw; " placeholder="reply ...">
+                    </form>
+                {% endif %}
+                <br>
+            </div>
+            {% endfor %}
+        {% if enroll %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-primary mb-3" type="submit" id="input-submit">Send</button>
+
+            </form>
+        {% endif %}
+        </div>
+    </section>
+
+    <script>
+    let ph = document.querySelector('#id_comment');
+    ph.placeholder = 'Add a comment ..';
+    </script>
+
+{% endblock %}
+
+                <input type="text" style="margin-bottom: 10px; padding: 10px; border-radius: 10px;border: 1px solid lightslategrey; width: 60vw;" placeholder="add a comment ...">

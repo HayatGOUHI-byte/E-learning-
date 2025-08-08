@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+
+.navbar {
+  background-color: #00022e;
+  padding: 1rem 1.2rem;
+}
+.navbar .container-fluid {
+  margin: 0 3rem;
+}
+.navbar .container-fluid .navbar-brand {
+  color: white;
+  transform: translateX(10%);
+  font-size: 2rem;
+  font-family: "Fredoka One", cursive;
+}
+.navbar .container-fluid div .navbar-nav .nav-item {
+  padding: 0 1.5rem;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.navbar .container-fluid div .navbar-nav .nav-item a {
+  color: white;
+}
+.navbar .container-fluid div .btn1 {
+  font-family: "Ubuntu", sans-serif;
+  transform: translateX(50%);
+}
+
+.btn1 {
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  border: 0.5px solid white;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+.btn1:hover {
+  background-color: white;
+  color: #00022e;
+  border-color: #00022e;
+}

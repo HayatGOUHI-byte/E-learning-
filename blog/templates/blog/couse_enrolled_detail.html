@@ -1,0 +1,64 @@
+{% extends "blog/base_2.html" %}
+{% load static %}
+{% block style %} <link rel="stylesheet" href="{% static 'blog/course_detail.css' %}"> {% endblock %}
+{% block content %}
+    <section class="course_detail" style="background-image: url({{ object.image.url }});">
+        <div class="overlay"></div>
+        <div class="txt">
+          <div class="heading">
+          <h1 > {{ object.title}}</h1>
+          <p class="description">
+              {{ object.description}}
+        </p>
+        <div>
+            <img class="img-fluid rounded-circle" src="{{ object.instructor.user.profile.image.url }}" alt="...">
+            <p style="font-size: 1.3rem;" >
+            {{ object.instructor.user.first_name }} {{ object.instructor.user.last_name }}
+            </p>
+        </div>
+
+        <h6 >
+            {{ object.level}}
+        </h6>
+        <p class="text-secondary">
+            {{ object.creationDate}}
+        </p>
+
+        </div>
+        </div>
+
+<div style="z-index: 10" class="custom-shape-divider-bottom-1613919420">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+          </svg>
+      </div>
+      </section>
+
+    <section class="you_will_learn container">
+
+        <div class="title">
+            <h3> WHAT YOU WILL LEARN </h3>
+        </div>
+        <div class="body">
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam cum nulla atque modi dolore recusandae amet. Sit recusandae ipsum qui consequuntur fugit sed ipsa, magnam neque provident, molestiae facilis tempora?
+
+            </p>
+        </div>
+
+
+    </section>
+
+    <section class="sections container-fluid">
+        <div>
+            <h2> Sections of this Course </h2>
+        </div>
+
+
+        {% for section in sections %}
+        <h4><a href="{{ section.get_absolute_url }}">  {{ section.title }}</a> </h4>
+
+        {% endfor %}
+
+    </section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'blog/base_2.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block style %}  <link rel="stylesheet" href="{% static 'blog/login.css' %}"> {% endblock %}
+{% block content %}
+    <section class="login">
+
+
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col col1 my-auto">
+                <div class="container">
+                    <form method="POST">
+                    {% csrf_token %}
+                    <fieldset >
+                        <legend class="border-bottom mb-4">Log In</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div >
+                        <button class="btn btn2" type="submit">Login</button>
+                        <small class="text-muted ml-2">
+                            <a href="{% url 'password_reset' %}">Forgot Password?</a>
+                        </small>
+                    </div>
+                </form>
+                <div class="border-top mt-5">
+                    <small class="text-muted">
+                        Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                    </small>
+                </div>
+                </div>
+
+            </div>
+            <div class="col col2">
+                <img class="img-fluid"
+                     src="{% static 'blog/images/kisspng-distance-education-course-e-learning-student-uzaktan-eitim-rnlerimiz-yerli-mal-lms-ve-5c11d7d398da47.3899027715446732356261.png' %}"
+                     alt="...">
+
+            </div>
+
+        </div>
+    </div>
+</section>
+ {% endblock %}
+
+

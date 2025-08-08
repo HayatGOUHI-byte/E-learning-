@@ -1,0 +1,72 @@
+h1 {
+   text-align: center;
+   color: #a8a8a8;
+}
+
+form {
+  max-width: 600px;
+  text-align: center;
+  margin: 20px auto;
+}
+form input, textarea {
+   outline:0;
+   padding: 1em;
+   display: block;
+   width: 100%;
+   border-radius: 8px;
+   margin-top: 1em;
+   font-family: 'Merriweather', sans-serif;
+
+  }
+
+form #input-submit {
+  outline:0;
+  padding: 1em;
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1em;
+  font-family: 'Merriweather', sans-serif;
+  resize: none;
+  color: white;
+  background: #00022e;
+  cursor: pointer;
+  }
+
+form textarea {
+      height: 126px;
+  }
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+}
+
+.right { width: 50%; }
+
+.left {
+     margin-right: 2%;
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%;
+     float: none;
+     margin-bottom: 0;
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}

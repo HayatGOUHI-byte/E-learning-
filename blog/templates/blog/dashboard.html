@@ -1,0 +1,180 @@
+
+{% extends "blog/base_2.html" %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'blog/dash.css' %}">
+{% endblock %}
+{% block content %}
+
+        <div class="container-fluid " style="margin-top: 10%;">
+            <div class="block-header">
+                <h1 class="d-flex justify-content-center">
+                    Course Analytics
+                </h1>
+            </div>
+            <div class="row clearfix d-flex justify-content-center" >
+
+                <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>the evolution of dolphiny gains, users registered and courses created per month</h2>
+                        </div>
+                        <div class="body">
+                            <canvas id="line_chart" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row clearfix d-flex justify-content-center">
+                <!-- Radar Chart -->
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                The entire courses and the number of courses enrolled by users in each domain
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <canvas id="radar_chart" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Radar Chart -->
+                <!-- Pie Chart -->
+                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>The percentage of users, instructors, and students registered in Dolphiny platform.</h2>
+                        </div>
+                        <div class="body">
+                            <canvas id="pie_chart" height="150"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- #END# Pie Chart -->
+            </div>
+        </div>
+    <!--</section>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+
+    <script >
+        $(function () {
+            new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+            new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
+            new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
+        });
+
+        function getChartJs(type) {
+            var config = null;
+
+            if (type === 'line') {
+                config = {
+                    type: 'line',
+                    data: {
+                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        datasets: [{
+                            label: "gains of the courses bought in dollars",
+                            data: [{% for date in datesp %}"{{ date }}",{% endfor %}],
+                            borderColor: 'rgba(0, 188, 212, 0.75)',
+                            backgroundColor: 'rgba(0, 188, 212, 0.3)',
+                            pointBorderColor: 'rgba(0, 188, 212, 0)',
+                            pointBackgroundColor: 'rgba(0, 188, 212, 0.9)',
+                            pointBorderWidth: 1
+                        },
+                        {
+                            label: "created courses",
+                            data: [{% for date in datesc %}"{{ date }}",{% endfor %}],
+                            borderColor: 'rgba(233, 30, 99, 0.75)',
+                            backgroundColor: 'rgba(233, 30, 99, 0.3)',
+                            pointBorderColor: 'rgba(233, 30, 99, 0)',
+                            pointBackgroundColor: 'rgba(233, 30, 99, 0.9)',
+                            pointBorderWidth: 1
+                        },
+                        {
+                            label: "registered users",
+                            data: [{% for date in datesu %}"{{ date }}",{% endfor %}],
+                            borderColor: 'rgba(0, 0, 199, 0.75)',
+                            backgroundColor: 'rgba(0, 0, 199, 0.3)',
+                            pointBorderColor: 'rgba(0, 0, 199, 0)',
+                            pointBackgroundColor: 'rgba(0, 0, 199, 0.9)',
+                            pointBorderWidth: 1
+                        }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: false
+                    }
+                }
+            }
+
+            else if (type === 'radar') {
+                config = {
+                    type: 'radar',
+                    data: {
+                        labels: [{% for domain in domains %}
+                            "{{ domain.title }}",
+                        {% endfor %}],
+                        datasets: [{
+                            label: "number of Courses",
+                            data: [{% for numcoursre in numcoursres %}"{{ numcoursre }}",{% endfor %}],
+                            borderColor: 'rgba(0, 188, 212, 0.8)',
+                            backgroundColor: 'rgba(0, 188, 212, 0.5)',
+                            pointBorderColor: 'rgba(0, 188, 212, 0)',
+                            pointBackgroundColor: 'rgba(0, 188, 212, 0.8)',
+                            pointBorderWidth: 1
+                        },
+                        {
+                            label: "Enrolled Courses",
+                            data: [{% for numenroll in numenrolls %}"{{ numenroll }}",{% endfor %}],
+                            borderColor: 'rgba(233, 30, 99, 0.8)',
+                            backgroundColor: 'rgba(233, 30, 99, 0.5)',
+                            pointBorderColor: 'rgba(233, 30, 99, 0)',
+                            pointBackgroundColor: 'rgba(233, 30, 99, 0.8)',
+                            pointBorderWidth: 1
+                        }],
+                    },
+                    options: {
+                        responsive: true,
+                        legend: false
+                    }
+                }
+            }
+            else if (type === 'pie') {
+                config = {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: [{% for percentage in userspercentage %}"{{ percentage }}",{% endfor %}],
+                            backgroundColor: [
+                                "rgb(233, 30, 99)",
+                                "rgb(255, 193, 7)",
+                                "rgb(0, 188, 212)",
+                                "rgb(139, 195, 74)"
+                            ],
+                        }],
+                        labels: [
+                            "Simple users",
+                            "Instructor",
+                            "Students"
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: false
+                    }
+                }
+            }
+            return config;
+        }
+    </script>
+<!--</body>
+</html>-->
+{% endblock content %}

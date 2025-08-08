@@ -1,0 +1,70 @@
+{% extends "blog/base_2.html" %}
+{% load static %}
+
+
+{% block style %} <link rel="stylesheet" href="{% static 'blog/created_courses.css' %}"> {% endblock %}
+{% block content %}
+    <h1 class="display-4" style=" color: #00022e; text-align: center;margin-top: 10%;"> Dear Intsructor,<br>
+        Here you can find all the courses you have created ㋡ </h1>
+    <section class="header">
+        <h4 class=" ">Your Created Courses </h4>
+        <form onsubmit="event.preventDefault();" role="search">
+
+            <input id="search" type="search" placeholder="Search..." autofocus required />
+            <button type="submit">Go</button>
+        </form>
+    </section>
+
+     <div class="links">
+        <a href="{% url 'Mycourses' %}"> My Courses</a>
+        <a href="{% url 'course-create' %}"> create course</a>
+
+    </div>
+
+    <section class="Courses container">
+        {% for course in courses %}
+        <article class="Course row container-fluid">
+
+            <div class="part-1 col-4">
+                <a href="{{ course.get_absolute_url }}"><img  src=" {{ course.image.url }}" alt="course"></a>
+            </div>
+            <div class="part-2 col-8">
+                <div class="description">
+                    <div class="d">
+                        <h4 >
+                            <a href="{{ course.get_absolute_url }}"> {{ course.title }} </a>
+                        </h4>
+                        <div class="btns">
+                            <a class="btn btn-primary" href="{% url 'course-update' course.id%}"> Update </a>
+                            <a class="btn btn-danger" href="#"> Delete </a>
+                        </div>
+
+                    </div>
+                    <p class="course-description">
+                       {{ course.description }}
+                    </p>
+                    <p  class="text-secondary">
+                         {{ course.instructor.user.first_name }} {{ course.instructor.user.last_name }}
+                    </p>
+                    <h6 >
+                        {{ course.level }}
+                    </h6>
+                    <p class="text-secondary">
+                       {{ course.creationDate }}
+                    </p>
+
+                </div>
+                <div class="price">
+
+
+                    <p> {{ course.price }}$</p>
+                </div>
+            </div>
+
+        </article>
+    {% endfor %}
+    </section>
+
+
+{% endblock content %}
+

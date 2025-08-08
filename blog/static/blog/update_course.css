@@ -1,0 +1,37 @@
+.login .container .row .container form .form label{
+    font-size:1em;
+    font-weight: bolder;
+    color: #532d84;
+}
+.login .container .row .container form .form label:after{
+    content: ":";
+}
+.login .container .row .container form .form input{
+    margin-bottom: 3%;
+
+}
+
+
+.login .container .row .container form .form input::placeholder{
+   color:red;
+}
+body{
+    background-color: whitesmoke;
+}
+.login .container .row .container form .form .btnn{
+    border-radius: 10px;
+    color: white;
+    background-color: #532d84;
+    font-weight: bolder;
+    margin-right: 5%;
+    width: 10vw;
+    margin-top: 10px;
+}
+
+@media all and (max-width: 556px) {
+
+    .login .container .row .container form .form .btnn{
+        width: 20vw;
+    }
+
+}

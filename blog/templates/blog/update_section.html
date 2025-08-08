@@ -1,0 +1,43 @@
+{% extends "blog/base_2.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'blog/update_course.css' %}">
+{% endblock %}
+{% block content %}
+
+    <section class="login instructor">
+
+
+    <div class="container py-5" style="margin-top: 10%">
+        <div class="row ">
+
+                <div class="container">
+
+
+                        <form method='post' enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <legend  style="color: #532d84;font-weight: bolder; text-align: center;font-size: 2.5rem;margin-bottom: 10%;">
+                                Update your Section  </legend>
+                            <div class="form">
+                            {{ form|crispy }}
+
+                            <button type="submit" class="btn btnn ">Save</button>
+                            <a class="btn btnn " href="{% url 'created_courses' %}"> Cancel</a>
+                            </div>
+                        </form>
+
+
+                </div>
+
+
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+

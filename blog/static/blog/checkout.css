@@ -1,0 +1,19 @@
+.checkout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    padding: 1%;
+    border :2px solid lightgray;
+    border-radius: 5px;
+}
+.checkout .thumbnail{
+    width: 90%;
+    height: 90%;
+    margin-right: 4%;
+    transform: translateY(-15%);
+}
+.checkout .thumbnail img {
+    border-radius: 15px;
+}

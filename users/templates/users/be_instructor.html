@@ -1,0 +1,53 @@
+{% extends 'blog/base_2.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+
+{% block style %}  <link rel="stylesheet" href="{% static 'blog/login.css' %}"> {% endblock %}
+{% block content %}
+    <section style="margin-bottom: 10rem" class="login instructor">
+
+
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-lg-2">
+            <div class="col col1 my-auto">
+                <div class="container">
+                   {% if user.instructor.verified == False %}
+                        <legend  style="text-align: center;font-size: 2rem;margin-bottom: 10%;">
+                                Thank you for your request .. we will review it as soon as possible
+                        </legend>
+
+                        {% elif user.instructor.verified == True %}
+                            <legend  style="text-align: center;font-size: 2rem;margin-bottom: 10%;">
+                                You are already an Instructor
+                        </legend>
+                       {% else %}
+                        <form method='post'>
+                            {% csrf_token %}
+                            <legend  style="text-align: center;font-size: 2rem;margin-bottom: 10%;">
+                                Fill the form bellow to become an "INSTRUCTOR"  </legend>
+                            <div class="form">
+                            {{ form|crispy }}
+
+                            <button type="submit" class="btn btn2 ">Submit</button>
+                            </div>
+                        </form>
+                         {% endif %}
+
+                </div>
+
+            </div>
+            <div class="col col2">
+                <img class="img-fluid"
+                     src="{% static 'blog/images/Daco_2324534.png' %}"
+                     alt="...">
+
+            </div>
+
+        </div>
+    </div>
+</section>
+ {% endblock %}

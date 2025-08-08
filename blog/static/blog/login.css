@@ -1,0 +1,58 @@
+
+
+.login {
+  padding-top: 5%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login .container .row {
+  text-align: center;
+}
+.login .container .row .col1 {
+  order: 2;
+}
+.login .container .row .col1 .container {
+width: 80%;
+}
+
+.login .container .row .col2 {
+  order: 1;
+}
+.btn2 {
+  font-family: "Ubuntu", sans-serif;
+  background-color: white;
+  width: 30%;
+  color: #00022e;
+  font-size: 1.2rem;
+  border: 0.5px solid #00022e;
+  transition: all 0.5s;
+}
+.btn2:hover {
+  background-color: #00022e;
+  color: white;
+  border-color: white;
+}
+.instructor .container .row .col2 {
+  order: 2;
+}
+.instructor .container .row .col1 .container form .form{
+  padding: 2% 0;
+  border: 1px solid lightgray;
+  border-left:none ;
+  border-right: none;
+
+}
+.instructor .container .row .col1 {
+  order: 1;
+}
+@media all and (max-width: 991px) {
+  .instructor .container .row .col1 {
+  order: 2;
+}
+  .instructor .container .row .col2 {
+  order: 1;
+}
+}
+

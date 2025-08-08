@@ -1,0 +1,178 @@
+.navbar {
+  padding: 1rem 1.2rem;
+}
+.navbar .container-fluid {
+  margin: 0 3rem;
+}
+.navbar .container-fluid .navbar-brand {
+  color: white;
+  transform: translateX(10%);
+  font-size: 2rem;
+  font-family: "Fredoka One", cursive;
+}
+.navbar .container-fluid div .navbar-nav .nav-item {
+  padding: 0 1.5rem;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.navbar .container-fluid div .navbar-nav .nav-item a {
+  color: white;
+}
+.navbar .container-fluid div .btn1 {
+  font-family: "Ubuntu", sans-serif;
+  transform: translateX(50%);
+}
+
+.register {
+    font-family: "Ubuntu", sans-serif;
+  background-image: url(./images/Ecus_Sleep-Gradient-Background.jpg);
+  background-size: cover;
+  height: max-content;
+  width: 100vw;
+  position: relative;
+}
+.register .custom-shape-divider-top-1613908015 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.register .custom-shape-divider-top-1613908015 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 35px;
+  transform: rotateY(180deg);
+}
+.register .custom-shape-divider-top-1613908015 .shape-fill {
+  fill: #FFFFFF;
+}
+.register .container {
+  transform: translateY(5%);
+}
+.register .container .row .col1 .container{
+  border-radius: 10px;
+  color: #00022e;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  width: 120%;
+    transform: translateX(-15%);
+}
+.register .container .row .col1 .container form button{
+margin-left: 8rem;
+}
+
+.register .container .row  img{
+
+  height: 80vh;
+
+
+}
+
+
+
+.sticky {
+  background-color: white;
+}
+.sticky .container-fluid .navbar-brand {
+  color: #00022e;
+}
+.sticky .container-fluid .collapse .navbar-nav .nav-item .nav-link {
+  color: #00022e;
+}
+.sticky .container-fluid .btn1 {
+  color: #00022e;
+  font-size: 1.2rem;
+  border: 0.5px solid #00022e;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+.sticky .container-fluid .btn1:hover {
+  background-color: #00022e;
+  color: white;
+  border-color: white;
+}
+
+.btn1 {
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  border: 0.5px solid white;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+.btn1:hover {
+  background-color: white;
+  color: #00022e;
+  border-color: #00022e;
+}
+
+
+
+.btn2 {
+  font-family: "Ubuntu", sans-serif;
+  background-color: white;
+  width: 30%;
+  color: #00022e;
+  font-size: 1.2rem;
+  border: 0.5px solid #00022e;
+  transition: all 0.5s;
+}
+.btn2:hover {
+  background-color: #00022e;
+  color: white;
+  border-color: white;
+}
+
+@media all and (max-width: 991px) {
+  .navbar .container-fluid {
+    margin: 0 0.5rem;
+  }
+  .navbar .container-fluid .btn1 {
+    margin-left: -23px;
+  }
+
+
+
+  .register {
+    height: 200vh;
+  }
+  .register .container .row .col1 {
+    order: 2;
+
+    width: 92vw;
+      height: 100vh;
+  }
+
+  .register .container .row img {
+    order: 1;
+  }
+
+
+.register .container .row .col1 .container{
+  height: 90vh;
+  width: 90%;
+    transform: none;
+
+    overflow: hidden;
+}
+.register .container .row .col1 .container form {
+    overflow: scroll;
+}
+.register .container .row .col1 .container form button{
+margin-left: 8rem;
+    overflow: hidden;
+}
+.register .container .row .col1 .container pt-1 {
+    overflow: hidden;
+}
+}
+
+/*# sourceMappingURL=register.css.map */
